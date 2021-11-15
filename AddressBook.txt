@@ -1,14 +1,14 @@
-mysql> insert into addressbook(firstname,lastname,city,address,state,zip,phoneno,email) values('kush','dubey','maharashtra','sitanagar-3','mumbai',24343,234424,'kush@gmail.com'),('ashok','shukla','surat','sitanagar-6','gujarat',235437,665363567,'ashok123@gmail.com'),('vasnavi','mahate','kandevali','kherroad','mumbai',434326,8757577,'vasnavidob@yahoo.com');
-Query OK, 3 rows affected (0.01 sec)
-Records: 3  Duplicates: 0  Warnings: 0
+mysql> update addressbook set firstname = 'amir',lastname='shukla',city='vapi',state='gujart',email='amir@yahoo.com' where firstname='kush';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
 mysql> select * from addressbook;
-+-----------+----------+-------------+-------------+---------+--------+-----------+----------------------+
-| firstname | lastname | city        | address     | state   | zip    | phoneNo   | email                |
-+-----------+----------+-------------+-------------+---------+--------+-----------+----------------------+
-| shailesh  | dubey    | surat       | sitanagar-3 | gujarat |  24343 |    234424 | shailesh@gmail.com   |
-| kush      | dubey    | maharashtra | sitanagar-3 | mumbai  |  24343 |    234424 | kush@gmail.com       |
-| ashok     | shukla   | surat       | sitanagar-6 | gujarat | 235437 | 665363567 | ashok123@gmail.com   |
-| vasnavi   | mahate   | kandevali   | kherroad    | mumbai  | 434326 |   8757577 | vasnavidob@yahoo.com |
-+-----------+----------+-------------+-------------+---------+--------+-----------+----------------------+
-4 rows in set ( 0.00 sec)
++-----------+----------+-----------+-------------+---------+--------+-----------+----------------------+
+| firstname | lastname | city      | address     | state   | zip    | phoneNo   | email                |
++-----------+----------+-----------+-------------+---------+--------+-----------+----------------------+
+| shailesh  | dubey    | surat     | sitanagar-3 | gujarat |  24343 |    234424 | shailesh@gmail.com   |
+| amir      | shukla   | vapi      | sitanagar-3 | gujart  |  24343 |    234424 | amir@yahoo.com       |
+| ashok     | shukla   | surat     | sitanagar-6 | gujarat | 235437 | 665363567 | ashok123@gmail.com   |
+| vasnavi   | mahate   | kandevali | kherroad    | mumbai  | 434326 |   8757577 | vasnavidob@yahoo.com |
++-----------+----------+-----------+-------------+---------+--------+-----------+----------------------+
+4 rows in set (0.00 sec)
