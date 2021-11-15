@@ -19,3 +19,6 @@ mysql> show databases;
 
 mysql> use employee_payroll;
 Database changed
+
+mysql> create Table employee_payroll(id int unsigned not null AUTO_INCREMENT,NAME VARCHAR(150) NOT NULL,SALARY DOUBLE NOT NULL,START date not null,primary key (id));
+Query OK, 0 rows affected (0.04 sec)
