@@ -46,3 +46,39 @@ mysql> select salary from employee_payroll where start between cast('2018-01-01'
 |  45000 |
 +--------+
 3 rows in set (0.00 sec)
+
+mysql> alter table employee_payroll add gender char(1) after name;
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee_payroll add gender char(1) after name;
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+---------+--------+--------+------------+
+| id | name    | gender | salary | start      |
++----+---------+--------+--------+------------+
+|  1 | bill    | NULL   |  23000 | 2018-01-03 |
+|  2 | mark    | NULL   |  20000 | 2019-11-13 |
+|  3 | charlie | NULL   |  45000 | 2020-05-21 |
++----+---------+--------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> update employee_payroll set gender = 'M' where name='bill' | name = 'charlie';
+ERROR 1292 (22007): Truncated incorrect INTEGER value: 'bill'
+mysql> update gender = 'M' employee_payroll where name='bill' | name = 'charlie';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 'M' employee_payroll where name='bill' | name = 'charlie'' at line 1
+mysql> update employee_payroll set gender ='M' where name='bill' or name = 'charlie';
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+---------+--------+--------+------------+
+| id | name    | gender | salary | start      |
++----+---------+--------+--------+------------+
+|  1 | bill    | M      |  23000 | 2018-01-03 |
+|  2 | mark    | NULL   |  20000 | 2019-11-13 |
+|  3 | charlie | M      |  45000 | 2020-05-21 |
++----+---------+--------+--------+------------+
+3 rows in set (0.00 sec)
