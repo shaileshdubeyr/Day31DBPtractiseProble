@@ -1,2 +1,21 @@
 mysql> create database employee_payroll;
 Query OK, 1 row affected (0.01 sec)
+
+mysql> create database employee_payroll;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| employee_payroll   |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| testdb             |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use employee_payroll;
+Database changed
