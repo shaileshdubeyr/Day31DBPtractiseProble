@@ -22,3 +22,7 @@ Database changed
 
 mysql> create Table employee_payroll(id int unsigned not null AUTO_INCREMENT,NAME VARCHAR(150) NOT NULL,SALARY DOUBLE NOT NULL,START date not null,primary key (id));
 Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into employee_payroll(name,salary,start,date) values('kush',4000,'23','32-3-21'),('shashank',34000,'2001','3-7-212');
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
