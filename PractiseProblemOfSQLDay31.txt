@@ -1,0 +1,2 @@
+mysql> create database employee_payroll;
+Query OK, 1 row affected (0.01 sec)
