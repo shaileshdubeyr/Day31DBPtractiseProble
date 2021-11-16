@@ -1,14 +1,12 @@
-mysql> update addressbook set firstname = 'amir',lastname='shukla',city='vapi',state='gujart',email='amir@yahoo.com' where firstname='kush';
+mysql> delete from addressbook where firstname ='amir';
 Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
 
 mysql> select * from addressbook;
-+-----------+----------+-----------+-------------+---------+--------+-----------+----------------------+
-| firstname | lastname | city      | address     | state   | zip    | phoneNo   | email                |
-+-----------+----------+-----------+-------------+---------+--------+-----------+----------------------+
-| shailesh  | dubey    | surat     | sitanagar-3 | gujarat |  24343 |    234424 | shailesh@gmail.com   |
-| amir      | shukla   | vapi      | sitanagar-3 | gujart  |  24343 |    234424 | amir@yahoo.com       |
-| ashok     | shukla   | surat     | sitanagar-6 | gujarat | 235437 | 665363567 | ashok123@gmail.com   |
-| vasnavi   | mahate   | kandevali | kherroad    | mumbai  | 434326 |   8757577 | vasnavidob@yahoo.com |
-+-----------+----------+-----------+-------------+---------+--------+-----------+----------------------+
-4 rows in set (0.00 sec)
++-----------+----------+-----------+-------------+---------+--------+-----------+----------------------+----+
+| firstname | lastname | city      | address     | state   | zip    | phoneNo   | email                | id |
++-----------+----------+-----------+-------------+---------+--------+-----------+----------------------+----+
+| shailesh  | dubey    | surat     | sitanagar-3 | gujarat |  24343 |    234424 | shailesh@gmail.com   |  1 |
+| ashok     | shukla   | surat     | sitanagar-6 | gujarat | 235437 | 665363567 | ashok123@gmail.com   |  3 |
+| vasnavi   | mahate   | kandevali | kherroad    | mumbai  | 434326 |   8757577 | vasnavidob@yahoo.com |  4 |
++-----------+----------+-----------+-------------+---------+--------+-----------+----------------------+----+
+3 rows in set (0.00 sec)
