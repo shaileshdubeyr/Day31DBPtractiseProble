@@ -1,8 +1,7 @@
-mysql> select * from addressbook where city = 'surat' or state = 'gujarat';
-+-----------+----------+-------+-------------+---------+--------+-----------+--------------------+----+
-| firstname | lastname | city  | address     | state   | zip    | phoneNo   | email              | id |
-+-----------+----------+-------+-------------+---------+--------+-----------+--------------------+----+
-| shailesh  | dubey    | surat | sitanagar-3 | gujarat |  24343 |    234424 | shailesh@gmail.com |  1 |
-| ashok     | shukla   | surat | sitanagar-6 | gujarat | 235437 | 665363567 | ashok123@gmail.com |  3 |
-+-----------+----------+-------+-------------+---------+--------+-----------+--------------------+----+
-2 rows in set (0.00 sec)
+mysql> select count(*) from addressbook where city='surat' or state='gujarat';
++----------+
+| count(*) |
++----------+
+|        2 |
++----------+
+1 row in set (0.01 sec)
