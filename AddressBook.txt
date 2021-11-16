@@ -1,12 +1,8 @@
-mysql> delete from addressbook where firstname ='amir';
-Query OK, 1 row affected (0.01 sec)
-
-mysql> select * from addressbook;
-+-----------+----------+-----------+-------------+---------+--------+-----------+----------------------+----+
-| firstname | lastname | city      | address     | state   | zip    | phoneNo   | email                | id |
-+-----------+----------+-----------+-------------+---------+--------+-----------+----------------------+----+
-| shailesh  | dubey    | surat     | sitanagar-3 | gujarat |  24343 |    234424 | shailesh@gmail.com   |  1 |
-| ashok     | shukla   | surat     | sitanagar-6 | gujarat | 235437 | 665363567 | ashok123@gmail.com   |  3 |
-| vasnavi   | mahate   | kandevali | kherroad    | mumbai  | 434326 |   8757577 | vasnavidob@yahoo.com |  4 |
-+-----------+----------+-----------+-------------+---------+--------+-----------+----------------------+----+
-3 rows in set (0.00 sec)
+mysql> select * from addressbook where city = 'surat' or state = 'gujarat';
++-----------+----------+-------+-------------+---------+--------+-----------+--------------------+----+
+| firstname | lastname | city  | address     | state   | zip    | phoneNo   | email              | id |
++-----------+----------+-------+-------------+---------+--------+-----------+--------------------+----+
+| shailesh  | dubey    | surat | sitanagar-3 | gujarat |  24343 |    234424 | shailesh@gmail.com |  1 |
+| ashok     | shukla   | surat | sitanagar-6 | gujarat | 235437 | 665363567 | ashok123@gmail.com |  3 |
++-----------+----------+-------+-------------+---------+--------+-----------+--------------------+----+
+2 rows in set (0.00 sec)
