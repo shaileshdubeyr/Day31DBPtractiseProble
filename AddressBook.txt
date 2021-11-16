@@ -1,6 +1,3 @@
-mysql> insert into addressbook (firstname,lastname,city,state,email,phoneno,address,zip,name,type) values('rahul','dubey','ara','baliya','rahul@gmail.com',787648,'sitanagar-77',234343,'gollegue','profesonal');
-Query OK, 1 row affected (0.00 sec)
-
 mysql> select * from addressbook;
 +-----------+----------+-------+--------------+----------+--------+---------+--------------------+----+----------+------------+
 | firstname | lastname | city  | address      | state    | zip    | phoneNo | email              | id | name     | type       |
@@ -14,3 +11,11 @@ mysql> select * from addressbook;
 | rahul     | dubey    | ara   | sitanagar-77 | baliya   | 234343 |  787648 | rahul@gmail.com    |  7 | gollegue | profesonal |
 +-----------+----------+-------+--------------+----------+--------+---------+--------------------+----+----------+------------+
 7 rows in set (0.00 sec)
+
+mysql> select count(*) from addressbook where type = 'family';
++----------+
+| count(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.00 sec)
