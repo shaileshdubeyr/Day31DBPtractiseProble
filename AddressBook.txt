@@ -1,21 +1,44 @@
-mysql> select * from addressbook;
-+-----------+----------+-------+--------------+----------+--------+---------+--------------------+----+----------+------------+
-| firstname | lastname | city  | address      | state    | zip    | phoneNo | email              | id | name     | type       |
-+-----------+----------+-------+--------------+----------+--------+---------+--------------------+----+----------+------------+
-| shailesh  | dubey    | surat | sitanagar-3  | gujarat  | 234343 |  787648 | shailesh@gmail.com |  1 | self     | family     |
-| love      | dubey    | surat | sitanagar-3  | gujarat  | 234343 |  787648 | love@gmail.com     |  2 | self     | family     |
-| ashok     | dubey    | surat | sitanagar-3  | mumbai   | 234343 |  787648 | ashok@gmail.com    |  3 | self     | family     |
-| abhishek  | dubey    | surat | sitanagar-5  | karela   | 234343 |  787648 | abhishek@gmail.com |  4 | friends  | friend     |
-| stanley   | dubey    | hubli | sitanagar-9  | karnatak | 234343 |  787648 | stanley@gmail.com  |  5 | friends  | friend     |
-| numan     | dubey    | bihar | sitanagar-77 | karnatak | 234343 |  787648 | numan@gmail.com    |  6 | friends  | friend     |
-| rahul     | dubey    | ara   | sitanagar-77 | baliya   | 234343 |  787648 | rahul@gmail.com    |  7 | gollegue | profesonal |
-+-----------+----------+-------+--------------+----------+--------+---------+--------------------+----+----------+------------+
-7 rows in set (0.00 sec)
+mysql> select * from person left join person_has_mobileno on person.person_id=person_has_mobileno.persons_id where person_has_mobileno.persons_id=1;
++-----------+---------+-------+--------------------+-------------+------------+------------+
+| person_id | state   | city  | email              | mobileno_id | mobile_no  | persons_id |
++-----------+---------+-------+--------------------+-------------+------------+------------+
+|         1 | gujarat | surat | shailesh@gmail.com |           1 | 1870988647 |          1 |
+|         1 | gujarat | surat | shailesh@gmail.com |           2 | 1871988647 |          1 |
+|         1 | gujarat | surat | shailesh@gmail.com |           3 | 1871988947 |          1 |
++-----------+---------+-------+--------------------+-------------+------------+------------+
 
-mysql> select count(*) from addressbook where type = 'family';
-+----------+
-| count(*) |
-+----------+
-|        3 |
-+----------+
-1 row in set (0.00 sec)
+mysql> select addressbook_has_persons.*,addressbook.*,person_has_name.*,person.* from addressbook inner join addressbook_has_persons on addressbook_has_persons.addressbooks_id=addressbook.addressbook_id right join person on addressbook_has_persons.person_id=person.person_id left join person_has_name on person.person_id=person_has_name.person_id where person_has_name.first_name='shailesh';
++------------------------+-----------+-----------------+----------------+------------------+---------+------------+-----------+-----------+-----------+---------+-------+--------------------+
+| addressbook_has_person | person_id | addressbooks_id | addressbook_id | addressbook_name | name_id | first_name | last_name | person_id | person_id | state   | city  | email              |
++------------------------+-----------+-----------------+----------------+------------------+---------+------------+-----------+-----------+-----------+---------+-------+--------------------+
+|                      6 |         1 |               2 |              2 | addressbook2     |       1 | shailesh   | dubey     |         1 |         1 | gujarat | surat | shailesh@gmail.com |
+|                      7 |         1 |               3 |              3 | addressbook3     |       1 | shailesh   | dubey     |         1 |         1 | gujarat | surat | shailesh@gmail.com |
++------------------------+-----------+-----------------+----------------+------------------+---------+------------+-----------+-----------+-----------+---------+-------+--------------------+
+2 rows in set (0.03 sec)
+
+mysql> select addressbook_has_persons.*,addressbook.*,person_has_name.*,person.* from addressbook inner join addressbook_has_persons on addressbook_has_persons.addressbooks_id=addressbook.addressbook_id right join person on addressbook_has_persons.person_id=person.person_id left join person_has_name on person.person_id=person_has_name.person_id where person.city='surat' or person.state='gujarat';
++------------------------+-----------+-----------------+----------------+------------------+---------+------------+-----------+-----------+-----------+---------+---------+--------------------+
+| addressbook_has_person | person_id | addressbooks_id | addressbook_id | addressbook_name | name_id | first_name | last_name | person_id | person_id | state   | city    | email              |
++------------------------+-----------+-----------------+----------------+------------------+---------+------------+-----------+-----------+-----------+---------+---------+--------------------+
+|                      6 |         1 |               2 |              2 | addressbook2     |       1 | shailesh   | dubey     |         1 |         1 | gujarat | surat   | shailesh@gmail.com |
+|                      7 |         1 |               3 |              3 | addressbook3     |       1 | shailesh   | dubey     |         1 |         1 | gujarat | surat   | shailesh@gmail.com |
+|                      8 |         3 |               1 |              1 | addressbook1     |       3 | kush       | dubey     |         3 |         3 | gujarat | surat   | kush@gmail.com     |
+|                     10 |         3 |               1 |              1 | addressbook1     |       3 | kush       | dubey     |         3 |         3 | gujarat | surat   | kush@gmail.com     |
+|                   NULL |      NULL |            NULL |           NULL | NULL             |    NULL | NULL       | NULL      |      NULL |         5 | gujarat | navsari | kush@gmail.com     |
++------------------------+-----------+-----------------+----------------+------------------+---------+------------+-----------+-----------+-----------+---------+---------+--------------------+
+5 rows in set (0.03 sec)
+
+mysql> select addressbook_has_persons.*,addressbook.*,person_has_name.*,person.* from addressbook inner join addressbook_has_persons on addressbook_has_persons.addressbooks_id=addressbook.addressbook_id right join person on addressbook_has_persons.person_id=person.person_id left join person_has_name on person.person_id=person_has_name.person_id order by  person_has_name.first_name ASC;
++------------------------+-----------+-----------------+----------------+------------------+---------+------------+-----------+-----------+-----------+-------------+---------+--------------------+
+| addressbook_has_person | person_id | addressbooks_id | addressbook_id | addressbook_name | name_id | first_name | last_name | person_id | person_id | state       | city    | email              |
++------------------------+-----------+-----------------+----------------+------------------+---------+------------+-----------+-----------+-----------+-------------+---------+--------------------+
+|                   NULL |      NULL |            NULL |           NULL | NULL             |    NULL | NULL       | NULL      |      NULL |         5 | gujarat     | navsari | kush@gmail.com     |
+|                   NULL |      NULL |            NULL |           NULL | NULL             |    NULL | NULL       | NULL      |      NULL |         6 | maharashtra | kalayan | ashok@gmail.com    |
+|                      9 |         4 |               1 |              1 | addressbook1     |       4 | ashok      | dubey     |         4 |         4 | maharashtra | kher    | ashok@gmail.com    |
+|                      8 |         3 |               1 |              1 | addressbook1     |       3 | kush       | dubey     |         3 |         3 | gujarat     | surat   | kush@gmail.com     |
+|                     10 |         3 |               1 |              1 | addressbook1     |       3 | kush       | dubey     |         3 |         3 | gujarat     | surat   | kush@gmail.com     |
+|                      6 |         1 |               2 |              2 | addressbook2     |       1 | shailesh   | dubey     |         1 |         1 | gujarat     | surat   | shailesh@gmail.com |
+|                      7 |         1 |               3 |              3 | addressbook3     |       1 | shailesh   | dubey     |         1 |         1 | gujarat     | surat   | shailesh@gmail.com |
+|                   NULL |      NULL |            NULL |           NULL | NULL             |       2 | shashank   | dubey     |         2 |         2 | maharashtra | kher    | shashank@gmail.com |
++------------------------+-----------+-----------------+----------------+------------------+---------+------------+-----------+-----------+-----------+-------------+---------+--------------------+
+8 rows in set (0.01 sec)
